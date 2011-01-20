@@ -1,0 +1,86 @@
+body {
+  font-family: 'helvetica', sans-serif;
+}
+
+.toolbar {
+  background-color: #333;
+  color: #fff;
+}
+
+.toolbar h2 {
+  height: 40px;
+  margin: 0;
+  padding: 10px;
+  line-height: 20px;
+}
+
+div#loggedIn-status {
+  float: right;
+  width: 300;
+  text-align: right;
+  height: 40px;
+  padding: 10px;
+  line-height: 20px;
+}
+
+div#loggedIn-status span {
+  text-decoration: underline;
+}
+div#loggedIn-status span:hover {
+  text-decoration:none;
+  cursor: pointer;
+}
+
+div#loggedIn-status span.notclickable {
+  text-decoration: none;
+}
+div#loggedIn-status span.notclickable:hover {
+  text-decoration:none;
+  cursor: default;
+}
+
+div.login-form {
+  font-size: 1.1em;
+  color: #fff;
+  background-color: #333;
+  padding: 20px;
+}
+
+div.login-form h3 {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #fff;
+  margin-bottom: 20px;
+}
+
+div.login-form table, div.login-form table td {
+  border: none;
+  line-height: 20px;
+}
+
+div.login-form button {
+  padding: 5px 10px;
+}
+
+button.disabled {
+  color: #ccc;
+}
+
+div#loginLoading {
+  float: right;
+  width: 100px;
+  text-align: right;
+  text-decoration: blink;
+}
+
+div#loginError {
+  border: 1px solid #f40404;
+  background-color: #f6bcbc;
+  padding: 5px 10px;
+  color: #f40404;
+  margin-bottom: 10px;
+}
+
+span#cancelSpan {
+  cursor: pointer;
+  text-decoration: underline;
+}
