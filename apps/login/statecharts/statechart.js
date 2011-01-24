@@ -7,8 +7,8 @@ Login.statechart = Ki.Statechart.create({
     loggedOut: Ki.State.design({
     
       enterState: function() {
-        if (Login.getPath('mainPage.mainPane.toolbar')) { 
-         Login.getPath('mainPage.mainPane.toolbar').goLoggedOut();
+        if (Login.mainPage ) {
+         Login.mainPage.get('toolbar').goLoggedOut();
         }
       },
       
@@ -21,7 +21,7 @@ Login.statechart = Ki.Statechart.create({
     /********************************** loggedIn state **********************************/
     loggedIn: Ki.State.design({
       enterState: function() {
-        Login.getPath('mainPage.mainPane.toolbar').goLoggedIn();
+        Login.mainPage.get('toolbar').goLoggedIn();
       },
       
       exitState: function() {
@@ -32,13 +32,13 @@ Login.statechart = Ki.Statechart.create({
     /********************************** loginIn state **********************************/
     loginIn: Ki.State.design({
       enterState: function() {
-        Login.getPath('loginPage.mainPane').append();
-        Login.getPath('mainPage.mainPane.toolbar').goLoginIn();
-        Login.getPath('loginPage.mainPane.contentView').gotoReady();
+        Login.loginPage.get('mainPane').append();
+        Login.mainPage.get('toolbar').goLoginIn();
+        Login.loginPage.get('contentView').gotoReady();
       },
       
       exitState: function() {
-        Login.getPath('loginPage.mainPane').remove();
+        Login.loginPage.get('mainPane').remove();
       }
     })
   })
