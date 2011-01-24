@@ -2,7 +2,7 @@ Toolbar = SC.View.extend({
 
   classNames: ['toolbar'],
   
-  title: 'default title',
+  title: "default title",
   state: null,
   logState: NO,
   
@@ -35,13 +35,13 @@ Toolbar = SC.View.extend({
     }
     var state = this.state;
     if (state === 'loggedOut') {
-      SC.CoreQuery('span#login').html('Log in');
+      SC.CoreQuery('span#login').html("Log in");
       SC.CoreQuery('span#login').removeClass('notclickable');
     } else if (state === 'loginIn') {
-      SC.CoreQuery('span#login').html('');
+      SC.CoreQuery('span#login').html("");
       SC.CoreQuery('span#login').addClass('notclickable');
     } else if (state === 'loggedIn') {
-      SC.CoreQuery('span#login').html('Log out');
+      SC.CoreQuery('span#login').html("Log out");
       SC.CoreQuery('span#login').removeClass('notclickable');
     }
   },

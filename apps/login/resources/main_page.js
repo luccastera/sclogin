@@ -20,7 +20,7 @@ Login.mainPage = SC.Page.design({
     
     toolbar: Toolbar.design({
       layout: {top: 0, left: 0, right: 0, height: 40, centerY: 0 },
-      title: 'Login States',
+      title: "Login States",
     }),
     
     mainView: SC.View.design({
