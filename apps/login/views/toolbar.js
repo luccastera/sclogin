@@ -11,6 +11,23 @@ Toolbar = SC.View.extend({
     this.goLoggedOut();
   },
   
+  
+  // Public API
+  
+  logout: function() {
+    this.goLoggedOut();
+  },
+  
+  beginLogin: function() {
+    this.goLoginIn();
+  },
+  
+  endLogin: function() {
+    this.goLoggedIn();
+  },
+  
+  // Internal API
+  
   goLoggedOut: function() {
     this.state = 'loggedOut';
     if (this.logState) console.log(this.state);
@@ -51,11 +68,11 @@ Toolbar = SC.View.extend({
     var state = this.state;
     if (target.attr('id') === 'login') {
       if (state === 'loggedOut') {
-        Login.statechart.gotoState('loginIn');
+        Login.statechart.beginLogin();
       } else if (state === 'loginIn') {
         // nothing to do here
       } else if (state === 'loggedIn') {
-        Login.statechart.gotoState('loggedOut');
+        Login.statechart.logout();
       }
     }
   }

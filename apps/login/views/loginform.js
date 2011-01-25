@@ -5,6 +5,13 @@ LoginForm = SC.View.extend({
   state: 'ready',
   logState: NO,
   
+  // external API
+  ready: function() {
+    this.gotoReady();
+  },
+  
+  // internal API
+  
   gotoSubmitted: function() {
     this.state = 'submitted';
     if (this.logState) console.log(this.state);
@@ -31,7 +38,7 @@ LoginForm = SC.View.extend({
 		if (parseInt(Date.now().toString()[10]) > 5 /* fake/randomize login is successful */) {
 		  window.setTimeout(function() {
 		    form.gotoReady();
-		    Login.statechart.gotoState('loggedIn');
+		    Login.statechart.endLogin();
 		  }, 2000);
 		} else {
 		  window.setTimeout(function() {
@@ -77,7 +84,7 @@ LoginForm = SC.View.extend({
       }
     } else if (target.id === 'cancelSpan') {
       this.gotoReady();
-      Login.statechart.gotoState('loggedOut');
+      Login.statechart.logout();
     }
   }
 
