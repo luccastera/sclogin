@@ -37,12 +37,16 @@ LoginForm = SC.View.extend({
     var form = this;
 		if (parseInt(Date.now().toString()[10]) > 5 /* fake/randomize login is successful */) {
 		  window.setTimeout(function() {
+		    SC.RunLoop.begin();
 		    form.gotoReady();
 		    Login.statechart.endLogin();
+		    SC.RunLoop.end();
 		  }, 2000);
 		} else {
 		  window.setTimeout(function() {
+		    SC.RunLoop.begin();
 		    form.gotoError();
+		    SC.RunLoop.end();
 		  }, 2000);
 		}
   },
