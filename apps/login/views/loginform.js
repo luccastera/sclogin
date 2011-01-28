@@ -39,6 +39,7 @@ Login.LoginForm = SC.View.extend({
 		  window.setTimeout(function() {
 		    SC.RunLoop.begin();
 		    form.gotoReady();
+        //TODO: decouple the view from the statechart. This is bad practice.
 		    Login.statechart.endLogin();
 		    SC.RunLoop.end();
 		  }, 2000);
@@ -88,6 +89,7 @@ Login.LoginForm = SC.View.extend({
       }
     } else if (target.id === 'cancelSpan') {
       this.gotoReady();
+      //TODO: decouple the view from the statechart. This is bad practice.
       Login.statechart.logout();
     }
   }

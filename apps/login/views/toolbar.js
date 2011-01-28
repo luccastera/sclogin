@@ -68,10 +68,12 @@ Login.Toolbar = SC.View.extend({
     var state = this.state;
     if (target.attr('id') === 'login') {
       if (state === 'loggedOut') {
+        //TODO: decouple the view from the statechart. This is bad practice.
         Login.statechart.beginLogin();
       } else if (state === 'loginIn') {
         // nothing to do here
       } else if (state === 'loggedIn') {
+        //TODO: decouple the view from the statechart. This is bad practice.
         Login.statechart.logout();
       }
     }
