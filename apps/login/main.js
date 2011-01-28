@@ -18,12 +18,7 @@ Login.main = function main() {
   // on screen.  If you app gets any level of complexity, you will probably 
   // create multiple pages and panes.
   Login.mainPage.get('mainPane').append() ;
-
-  // Step 2. Set the content property on your primary controller.
-  // This will make your app come alive!
-
-  // TODO: Set the content property on your primary controller
-  // ex: Login.contactsController.set('content',Login.contacts)
+  Login.statechart.initStatechart();
 } ;
 
 function main() { Login.main(); }

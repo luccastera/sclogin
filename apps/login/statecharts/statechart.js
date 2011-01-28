@@ -57,5 +57,3 @@ Login.statechart = Ki.Statechart.create({
   })
 
 });
-
-Login.statechart.initStatechart();

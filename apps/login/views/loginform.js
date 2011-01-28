@@ -1,4 +1,4 @@
-LoginForm = SC.View.extend({
+Login.LoginForm = SC.View.extend({
 
   classNames: ['login-form'],
   

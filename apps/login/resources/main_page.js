@@ -18,7 +18,7 @@ Login.mainPage = SC.Page.design({
     
     childViews: 'toolbar mainView'.w(),
     
-    toolbar: Toolbar.design({
+    toolbar: Login.Toolbar.design({
       layout: {top: 0, left: 0, right: 0, height: 40, centerY: 0 },
       title: "Login States",
     }),

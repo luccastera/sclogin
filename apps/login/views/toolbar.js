@@ -1,4 +1,4 @@
-Toolbar = SC.View.extend({
+Login.Toolbar = SC.View.extend({
 
   classNames: ['toolbar'],
   
