@@ -1,10 +1,15 @@
 Login.Toolbar = SC.View.extend({
 
   classNames: ['toolbar'],
-  
   title: "default title",
   state: null,
   logState: NO,
+  
+  logoutTarget: null,
+  logoutAction: null,
+  
+  loginTarget: null,
+  loginAction: null,
   
   init: function() {
     sc_super();
@@ -66,16 +71,20 @@ Login.Toolbar = SC.View.extend({
   mouseDown: function(evt) {
     var target = SC.CoreQuery(evt.target);
     var state = this.state;
+    var rootResponder = this.getPath('pane.rootResponder');
     if (target.attr('id') === 'login') {
       if (state === 'loggedOut') {
-        //TODO: decouple the view from the statechart. This is bad practice.
-        Login.statechart.beginLogin();
-      } else if (state === 'loginIn') {
-        // nothing to do here
+        this.target = this.get('loginTarget') || null;
+        this.action = this.get('loginAction');
       } else if (state === 'loggedIn') {
-        //TODO: decouple the view from the statechart. This is bad practice.
-        Login.statechart.logout();
+        this.target = this.get('logoutTarget') || null;
+        this.action = this.get('logoutAction');
       }
+      
+      if(rootResponder) {
+        rootResponder.sendAction(this.action, this.target, this, this.get('pane'));
+      }
+      
     }
   }
   

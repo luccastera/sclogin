@@ -1,32 +1,21 @@
 Login.statechart = Ki.Statechart.create({
-
-  // external API
-  beginLogin: function() {
-      this.gotoState('loginIn');
-  },
-  endLogin: function() {
-    this.gotoState('loggedIn');
-  },
-  logout: function() {
-    this.gotoState('loggedOut');
-  },
   
   // statechart below
 
   rootState: Ki.State.design({
     initialSubstate: 'loggedOut',
-    
+
     /********************************** loggedOut state **********************************/
     loggedOut: Ki.State.design({
-    
+
       enterState: function() {
         if (Login.mainPage ) {
          Login.mainPage.get('toolbar').logout();
         }
       },
-      
-      exitState: function() {
-        
+
+      beginLogin: function() {
+        this.gotoState('loginIn');
       }
     
     }),
@@ -36,14 +25,14 @@ Login.statechart = Ki.Statechart.create({
       enterState: function() {
         Login.mainPage.get('toolbar').endLogin();
       },
-      
-      exitState: function() {
-        
+      logout: function() {
+        this.gotoState('loggedOut');
       }
     }),
     
     /********************************** loginIn state **********************************/
     loginIn: Ki.State.design({
+
       enterState: function() {
         Login.loginPage.get('mainPane').append();
         Login.mainPage.get('toolbar').beginLogin();
@@ -52,6 +41,13 @@ Login.statechart = Ki.Statechart.create({
       
       exitState: function() {
         Login.loginPage.get('mainPane').remove();
+      },
+      
+      endLogin: function() {
+        this.gotoState('loggedIn');
+      },
+      logout: function() {
+        this.gotoState('loggedOut');
       }
     })
   })

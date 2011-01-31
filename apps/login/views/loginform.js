@@ -5,6 +5,11 @@ Login.LoginForm = SC.View.extend({
   state: 'ready',
   logState: NO,
   
+  loginTarget: null,
+  loginAction: null,
+  logoutTarget: null,
+  logoutAction: null,
+  
   // external API
   ready: function() {
     this.gotoReady();
@@ -35,21 +40,19 @@ Login.LoginForm = SC.View.extend({
   
   fakeLogin: function(email,password) {
     var form = this;
-		if (parseInt(Date.now().toString()[10]) > 5 /* fake/randomize login is successful */) {
-		  window.setTimeout(function() {
-		    SC.RunLoop.begin();
-		    form.gotoReady();
-        //TODO: decouple the view from the statechart. This is bad practice.
-		    Login.statechart.endLogin();
-		    SC.RunLoop.end();
-		  }, 2000);
-		} else {
-		  window.setTimeout(function() {
-		    SC.RunLoop.begin();
-		    form.gotoError();
-		    SC.RunLoop.end();
-		  }, 2000);
-		}
+    this.invokeLater(function() {
+      if (parseInt(Date.now().toString()[10]) > 5 /* fake/randomize login is successful */) {
+        form.gotoReady();
+        var rootResponder =  this.getPath('pane.rootResponder');
+        this.target = this.get('loginTarget') || null;
+        this.action = this.get('loginAction');
+        if(rootResponder) {
+          rootResponder.sendAction(this.action, this.target, this, this.get('pane'));
+        }
+      } else {
+        form.gotoError();
+      }
+    }, 2000);
   },
   
   render: function(context,firstTime ) {
@@ -89,8 +92,12 @@ Login.LoginForm = SC.View.extend({
       }
     } else if (target.id === 'cancelSpan') {
       this.gotoReady();
-      //TODO: decouple the view from the statechart. This is bad practice.
-      Login.statechart.logout();
+      var rootResponder = this.getPath('pane.rootResponder');
+      this.target = this.get('logoutTarget') || null;
+      this.action = this.get('logoutAction');
+      if(rootResponder) {
+        rootResponder.sendAction(this.action, this.target, this, this.get('pane'));
+      }
     }
   }
 

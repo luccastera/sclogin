@@ -21,11 +21,13 @@ Login.mainPage = SC.Page.design({
     toolbar: Login.Toolbar.design({
       layout: {top: 0, left: 0, right: 0, height: 40, centerY: 0 },
       title: "Login States",
+      loginAction: 'beginLogin',
+      logoutAction: 'logout'
     }),
     
     mainView: SC.View.design({
       layout: {top: 40, left: 0, right: 0, bottom: 0},
-      backgroundColor: '#fff'
+      backgroundColor: '#fff',
     })
 
   }),
